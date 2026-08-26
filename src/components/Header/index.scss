@@ -28,9 +28,11 @@
       width: 100%;
       justify-content: space-between;
       .header-logo {
-        height: 100%;
         img {
+          display: block;
           height: 100%;
+          width: auto;
+          object-fit: contain;
         }
       }
       .header-actions {
@@ -52,20 +54,17 @@
             height: 1em;
           }
         }
-        .header-wishlist-link {
-          position: relative;
-          span {
-            position: absolute;
-            top: 0;
-            right: 0;
-          }
-        }
+        .header-wishlist-link,
         .header-cart-link {
           position: relative;
           span {
             position: absolute;
             top: 0;
-            right: 0;
+            left: 50%;
+            font-size: 30px;
+            font-weight: 700;
+            line-height: 1;
+            color: #000;
           }
         }
         .autocomplete {

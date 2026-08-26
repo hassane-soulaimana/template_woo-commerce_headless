@@ -32,9 +32,16 @@
 }
 .header .content .menu .header-logo {
   height: 100%;
+  display: flex;
+  align-items: center;
+  margin: 0;
+  padding: 0;
 }
 .header .content .menu .header-logo img {
+  display: block;
   height: 100%;
+  width: auto;
+  object-fit: contain;
 }
 .header .content .menu .header-actions {
   justify-content: flex-end;
@@ -56,21 +63,20 @@
   width: 1em;
   height: 1em;
 }
-.header .content .menu .header-actions .header-wishlist-link {
-  position: relative;
-}
-.header .content .menu .header-actions .header-wishlist-link span {
-  position: absolute;
-  top: 0;
-  right: 0;
-}
+.header .content .menu .header-actions .header-wishlist-link,
 .header .content .menu .header-actions .header-cart-link {
   position: relative;
 }
+.header .content .menu .header-actions .header-wishlist-link span,
 .header .content .menu .header-actions .header-cart-link span {
   position: absolute;
   top: 0;
-  right: 0;
+  left: 50%;
+  transform: translate(-10%, -45%);
+  font-size: 0.35em;
+  font-weight: 700;
+  line-height: 1;
+  color: #000;
 }
 .header .content .menu .header-actions .autocomplete input {
   height: 100%;
