@@ -1,7 +1,3 @@
-.promo {
-  margin-bottom: 5vw;
-  margin-left: 2vw;
-}
 .promo form {
   width: 100%;
   display: flex;
@@ -13,4 +9,8 @@
 .promo form input {
   height: 100%;
   margin: auto 0;
+}
+.promo {
+  margin-bottom: 5vw;
+  margin-left: 2vw;
 }/*# sourceMappingURL=index.css.map */

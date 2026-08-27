@@ -51,17 +51,14 @@ export default function WishlistButton({ product }) {
   };
 
   return (
-    <button
+    <img
       type="button"
       className={`wishlist-button ${isWishlisted ? "active" : ""}`}
       aria-pressed={isWishlisted}
-      aria-label={
-        isWishlisted ? "Retirer des favoris" : "Ajouter aux favoris"
-      }
+      aria-label={isWishlisted ? "Retirer des favoris" : "Ajouter aux favoris"}
       title={isWishlisted ? "Retirer des favoris" : "Ajouter aux favoris"}
       onClick={toggleWishlist}
-    >
-      {isWishlisted ? "❤️" : "🤍"}
-    </button>
+      src={isWishlisted ? "/favorite-active.svg" : "/favorite-inactive.svg"}
+    />
   );
 }

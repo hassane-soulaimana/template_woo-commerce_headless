@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
 import PageContent from "../../components/PageContent";
-import "./index.scss";
+import "./index.css";
 
 export default function Contact() {
   const email = useSelector((state) => state.site.store_email);

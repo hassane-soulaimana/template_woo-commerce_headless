@@ -27,16 +27,24 @@ export default function Filters() {
 
   const handleCategoryChange = (e) => {
     dispatch(setFilters({ category: e.target.value, search: "" }));
+    setIsOpen(false);
   };
 
   const handleSortChange = (e) => {
     const [orderby, order] = e.target.value.split("-");
     dispatch(setFilters({ orderby, order }));
+    setIsOpen(false);
   };
 
   const handlePriceChange = (e) => {
     const { name, value } = e.target;
     dispatch(setFilters({ [name]: value }));
+  };
+
+  const handleControlsBlur = (e) => {
+    if (!e.currentTarget.contains(e.relatedTarget)) {
+      setIsOpen(false);
+    }
   };
 
   return (
@@ -50,15 +58,11 @@ export default function Filters() {
           aria-expanded={isOpen}
           aria-controls="filter-controls"
         >
-          <svg
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3" />
+          <svg viewBox="0 0 64 51" fill="none">
+            <path d="M0 7.28571H64V0H0V7.28571Z" fill="currentColor" />
+            <path d="M8 21.8571H56V14.5714H8V21.8571Z" fill="currentColor" />
+            <path d="M16 36.4286H48V29.1429H16V36.4286Z" fill="currentColor" />
+            <path d="M40 51H24V43.7143H40V51Z" fill="currentColor" />
           </svg>
           <span>Filtres</span>
           {hasActiveFilters && <span className="filter-toggle-dot"></span>}
@@ -67,6 +71,7 @@ export default function Filters() {
           id="filter-controls"
           className={`filter-controls${isOpen ? " open" : ""}`}
           inert={!isOpen}
+          onBlur={handleControlsBlur}
         >
           <div className="filter-controls-inner">
             <select value={filters.category} onChange={handleCategoryChange}>

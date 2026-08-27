@@ -17,11 +17,10 @@
     "react-focus-trap": "^2.7.2",
     "react-helmet-async": "^3.0.0",
     "react-redux": "^9.3.0",
-    "react-router-dom": "^6.30.0"
+    "react-router-dom": "^7.18.2"
   },
   "devDependencies": {
     "@vitejs/plugin-react": "^6.0.2",
-    "sass-embedded": "^1.103.1",
     "vite": "^8.0.16"
   }
 }

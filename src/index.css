@@ -7,7 +7,7 @@
 }
 @font-face {
   font-family: "PoppinsCustom";
-  src: url("./assets/fonts/Poppins-Bold.ttf") format("truetype");
+  src: url("./assets/fonts/Poppins-Medium.ttf") format("truetype");
   font-weight: 700;
   font-style: normal;
 }
@@ -18,6 +18,8 @@
   --surface-color: #f6ece0f6;
   --dark-color: #000000;
   --text-color-muted: #575757;
+  --danger-color: #880000;
+  --success-color: #006e18;
   --bg-color: #fdf5ea;
   --white-color: #ffffff;
   --font-body: "PlayfairDisplay", sans-serif;
@@ -146,7 +148,7 @@ a:hover {
 
 h1 {
   font-size: 8.5vw;
-  font-family: var(--font-heading);
+  font-family: var(--font-body);
   margin-bottom: 4vw;
 }
 @media screen and (aspect-ratio > 1/1) {
@@ -164,7 +166,7 @@ h1 {
 
 h2 {
   font-size: 7.5vw;
-  font-family: var(--font-heading);
+  font-family: var(--font-body);
   margin-bottom: 3.5vw;
 }
 @media screen and (aspect-ratio > 1/1) {
@@ -254,10 +256,10 @@ h6 {
 
 button {
   cursor: pointer;
-  border: none;
+  border: 1px solid var(--primary-color);
   background: var(--primary-color);
   color: var(--bg-color);
-  font-family: var(--font-body);
+  font-family: var(--font-heading);
   display: flex;
   align-items: center;
   justify-content: center;

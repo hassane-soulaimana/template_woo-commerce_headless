@@ -68,13 +68,6 @@ export default function ProductCard({ product }) {
     <div className="product-card">
       <WishlistButton product={product} className="wishlist-button" />
       <Link to={"/product/" + product.slug} className="product-link">
-        <h4
-          dangerouslySetInnerHTML={{
-            __html: product.name || "-",
-            /* __html: truncateWords(product.name) || "-", */
-          }}
-        />
-        <p className="brand-title">{product.brands?.[0]?.name} </p>
         <img
           src={
             product.images[0]?.src ||
@@ -82,17 +75,24 @@ export default function ProductCard({ product }) {
           }
           alt={product.name || "photo produit"}
         />
+        <h4
+          dangerouslySetInnerHTML={{
+            __html: product.name || "-",
+            /* __html: truncateWords(product.name) || "-", */
+          }}
+        />
+        <p className="brand-title">{product.brands?.[0]?.name} </p>
       </Link>
 
       <div className="description">
         <span>
-          <span>Prix: </span>
-          <span dangerouslySetInnerHTML={{ __html: product.price_html }} />
           {product.is_in_stock ? (
             <p className="stock-status-available">En stock</p>
           ) : (
             <p className="stock-status-unavailable">Rupture de stock</p>
           )}
+          <span>Prix: </span>
+          <span dangerouslySetInnerHTML={{ __html: product.price_html }} />
         </span>
 
         <span>

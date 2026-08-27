@@ -8,8 +8,8 @@
     padding: 0 1rem;
 
     .top-navigation-bar {
-        background-color: #f1f5f9;
-        border: 1px solid #e2e8f0;
+        background-color: var(--bg-color);
+        border: 1px solid var(--border-color);
         border-radius: 1vw;
         display: flex;
         align-items: center;
@@ -45,7 +45,7 @@
                 display: inline-flex;
                 align-items: center;
                 gap: 0.5rem;
-                color: #64748b;
+                color: var(--text-color-muted);
 
                 &:hover {
                     color: var(--primary-color);
@@ -53,7 +53,7 @@
             }
 
             .separator {
-                color: #cbd5e1;
+                color: var(--text-color-muted);
             }
 
             .current-page {
@@ -77,27 +77,28 @@
 
     button {
         border-radius: 50px;
-        color: #2563eb;
-        background-color: #ffffff;
-        border: 1px solid #2563eb;
+        color: var(--surface-color);
+        background-color: var(--primary-color);
+        border: 1px solid var(--primary-color-light); ;
         padding: 0.5rem;
+        margin: 0.5rem 0;
 
         display: inline-flex;
         align-items: center;
         gap: 0.5rem;
 
         &:hover {
-            color: #ffffff;
-            background-color: #2563eb;
+            color: var(--surface-color);
+            background-color: var(--primary-color);
         }
     }
 
     .product-main-card {
-        background-color: #ffffff;
-        border: 1px solid #e2e8f0;
+        background-color: var(--surface-color);
+        border: 1px solid var(--border-color);
         border-radius: 16px;
         padding: 2rem;
-        box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.05);
+        box-shadow: 0 10px 25px -5px var(--primary-color);
 
         @media (max-width: 640px) {
             padding: 1.25rem;
@@ -149,7 +150,7 @@
             }
 
             &::-webkit-scrollbar-thumb {
-                background-color: #cbd5e1;
+                background-color: var(--primary-color);
                 border-radius: 10px;
             }
 
@@ -187,8 +188,8 @@
         }
 
         .price-action-card {
-            background-color: #f1f5f9;
-            border: 1px solid #d6dbe3;
+            background-color: var(--surface-color);
+            border: 1px solid var(--primary-color);
             border-radius: 12px;
             padding: 0.5rem;
             display: flex;
@@ -215,7 +216,7 @@
 
         .description-content {
             line-height: 1.8;
-            color: #4f627c;
+            color: var(--text-color-muted);
         }
     }
 }

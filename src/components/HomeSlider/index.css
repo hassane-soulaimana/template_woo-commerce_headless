@@ -1,5 +1,6 @@
 .sliderContainer {
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
   overflow: hidden;
   position: relative;
   display: flex;
@@ -19,7 +20,8 @@
 .sliderContainer .sl {
   transition: translate 1.2s;
   position: absolute;
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
   top: 0;
   display: flex;
   justify-content: center;
@@ -96,7 +98,7 @@
   transition: 1s;
 }
 .sliderContainer .selected {
-  translate: 0%;
+  translate: 0% -5%;
   transition: 1s;
 }
 .sliderContainer .next {
