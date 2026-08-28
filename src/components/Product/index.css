@@ -1,6 +1,4 @@
 .product-main-card {
-  background-color: var(--surface-color);
-  border: 1px solid color-mix(in srgb, var(--dark-color) 14%, transparent);
   border-radius: 16px;
   padding: 2rem;
   box-shadow: 0 10px 25px -5px color-mix(in srgb, var(--primary-color) 35%, transparent);
@@ -9,6 +7,9 @@
   .product-main-card {
     padding: 1.25rem;
   }
+}
+.product-main-card .addToCart {
+  margin-right: 2vw;
 }
 .product-main-card button {
   margin: 2.5px;
