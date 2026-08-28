@@ -149,6 +149,7 @@
   border: 1px solid var(--dark-color);
   border-radius: 1vw;
   padding-left: 10%;
+  padding-bottom: 2%;
 }
 @media screen and (aspect-ratio > 1/1) {
   .product-card {
