@@ -329,30 +329,30 @@ const Review = ({ productId }) => {
       {loading && <Loader size="lg" />}
       {error && <p className="review-error">Erreur : {error}</p>}
       {!loading && !error && reviews.length === 0 && <p>Aucun avis trouvé.</p>}
-
-      {currentReviews.map((review) => (
-        <article key={review.id || review.review_id} className="review-item">
-          <div className="review-stars">{renderStars(review.rating)}</div>
-          <div className="review-meta">
-            <strong>
-              {review.reviewer ?? "Anonyme"}
-              {" - "}
-            </strong>
-            <span>
-              {review.date_created
-                ? new Date(review.date_created).toLocaleDateString("fr-FR")
-                : ""}
-            </span>
-          </div>
-          <div
-            className="review-content"
-            dangerouslySetInnerHTML={{
-              __html: review.review || "",
-            }}
-          />
-        </article>
-      ))}
-
+      <div className="reviews-block">
+        {currentReviews.map((review) => (
+          <article key={review.id || review.review_id} className="review-item">
+            <div className="review-stars">{renderStars(review.rating)}</div>
+            <div className="review-meta">
+              <strong>
+                {review.reviewer ?? "Anonyme"}
+                {" - "}
+              </strong>
+              <span>
+                {review.date_created
+                  ? new Date(review.date_created).toLocaleDateString("fr-FR")
+                  : ""}
+              </span>
+            </div>
+            <div
+              className="review-content"
+              dangerouslySetInnerHTML={{
+                __html: review.review || "",
+              }}
+            />
+          </article>
+        ))}
+      </div>
       {/* --- BARRE DE PAGINATION --- */}
       {!loading && totalPages > 1 && (
         <div className="pagination">

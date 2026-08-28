@@ -52,4 +52,8 @@
   background-color: var(--primary-color);
   color: var(--bg-color);
   pointer-events: none;
+}
+
+.reviews-block {
+  margin-top: 3lvh;
 }/*# sourceMappingURL=index.css.map */
