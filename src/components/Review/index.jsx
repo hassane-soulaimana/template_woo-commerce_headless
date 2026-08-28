@@ -15,6 +15,10 @@ const Review = ({ productId }) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  // États pour la pagination
+  const [currentPage, setCurrentPage] = useState(1);
+  const reviewsPerPage = 5;
+
   // États pour l'achat et le formulaire
   const [hasPurchased, setHasPurchased] = useState(false);
   const [checkingPurchase, setCheckingPurchase] = useState(false);
@@ -51,6 +55,7 @@ const Review = ({ productId }) => {
 
   useEffect(() => {
     fetchReviews();
+    setCurrentPage(1); // Réinitialise la page lors du changement de produit
   }, [productId]);
 
   // Helper pour vérifier si une liste d'articles contient le produit
@@ -110,7 +115,6 @@ const Review = ({ productId }) => {
           }
         }
 
-        // 2. Option B : Appel API WooCommerce si aucune commande n’est déjà chargée
         const response = await fetch(
           `${baseUrl}/wp-json/wc/v3/orders?customer=${user?.id}&status=completed`,
           {
@@ -215,6 +219,45 @@ const Review = ({ productId }) => {
     ));
   };
 
+  // --- Calculs pour la pagination ---
+  const indexOfLastReview = currentPage * reviewsPerPage;
+  const indexOfFirstReview = indexOfLastReview - reviewsPerPage;
+  const currentReviews = reviews.slice(indexOfFirstReview, indexOfLastReview);
+  const totalPages = Math.ceil(reviews.length / reviewsPerPage);
+
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+  const getPaginationRange = (current, total) => {
+    const delta = 1; // Nombre de pages affichées autour de la page active
+    const range = [];
+    const rangeWithDots = [];
+    let l;
+
+    for (let i = 1; i <= total; i++) {
+      if (
+        i === 1 ||
+        i === total ||
+        (i >= current - delta && i <= current + delta)
+      ) {
+        range.push(i);
+      }
+    }
+
+    for (let i of range) {
+      if (l) {
+        if (i - l === 2) {
+          rangeWithDots.push(l + 1);
+        } else if (i - l !== 1) {
+          rangeWithDots.push("...");
+        }
+      }
+      rangeWithDots.push(i);
+      l = i;
+    }
+
+    return rangeWithDots;
+  };
   return (
     <div id="reviews-section" className="review-list">
       <h2>Avis</h2>
@@ -287,7 +330,7 @@ const Review = ({ productId }) => {
       {error && <p className="review-error">Erreur : {error}</p>}
       {!loading && !error && reviews.length === 0 && <p>Aucun avis trouvé.</p>}
 
-      {reviews.map((review) => (
+      {currentReviews.map((review) => (
         <article key={review.id || review.review_id} className="review-item">
           <div className="review-stars">{renderStars(review.rating)}</div>
           <div className="review-meta">
@@ -309,6 +352,61 @@ const Review = ({ productId }) => {
           />
         </article>
       ))}
+
+      {/* --- BARRE DE PAGINATION --- */}
+      {!loading && totalPages > 1 && (
+        <div className="pagination">
+          {currentPage > 1 && (
+            <a
+              href="#reviews-section"
+              onClick={(e) => {
+                e.preventDefault();
+                handlePageChange(currentPage - 1);
+              }}
+            >
+              Précédent
+            </a>
+          )}
+
+          {getPaginationRange(currentPage, totalPages).map((page, index) => {
+            // Affichage des points de suspension
+            if (page === "...") {
+              return (
+                <span key={`dots-${index}`} className="pagination-dots">
+                  ...
+                </span>
+              );
+            }
+
+            // Affichage des numéros de page
+            return (
+              <a
+                key={page}
+                href="#reviews-section"
+                onClick={(e) => {
+                  e.preventDefault();
+                  handlePageChange(page);
+                }}
+                className={currentPage === page ? "active" : ""}
+              >
+                {page}
+              </a>
+            );
+          })}
+
+          {currentPage < totalPages && (
+            <a
+              href="#reviews-section"
+              onClick={(e) => {
+                e.preventDefault();
+                handlePageChange(currentPage + 1);
+              }}
+            >
+              Suivant
+            </a>
+          )}
+        </div>
+      )}
     </div>
   );
 };

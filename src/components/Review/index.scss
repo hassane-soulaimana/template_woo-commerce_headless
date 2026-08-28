@@ -1,4 +1,3 @@
-// Composants
 .review-rating {
   display: flex;
   align-items: center;
@@ -25,4 +24,36 @@
   margin-top: 2lvh;
   padding: 1%;
   box-sizing: border-box;
+}
+// Style de la pagination
+.pagination {
+  display: flex;
+  align-items: center;
+  margin-top: 5lvh;
+  margin-bottom: 3lvh;
+
+  a {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+
+    padding: 1lvh 1vw;
+    border-radius: 50vw;
+    font-weight: 600;
+    transition: all 0.3s ease;
+
+    // Effet au survol de la souris
+    &:hover {
+      color: var(--dark-color);
+      transform: translateY(-0.2lvh);
+    }
+
+    // Style de la page courante
+    &.active {
+      background-color: var(--primary-color);
+      color: var(--bg-color);
+      pointer-events: none;
+    }
+  }
 }
