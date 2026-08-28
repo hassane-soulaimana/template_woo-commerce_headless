@@ -63,7 +63,7 @@
   box-shadow: none !important;
   -webkit-appearance: none !important;
   -moz-appearance: none !important;
-  appearance: none !important;
+       appearance: none !important;
   pointer-events: none;
   touch-action: none;
 }
@@ -95,6 +95,4 @@
   border: none;
   pointer-events: auto;
   cursor: pointer;
-}
-
-/*# sourceMappingURL=index.css.map */
+}/*# sourceMappingURL=index.css.map */
