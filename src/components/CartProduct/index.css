@@ -31,7 +31,8 @@
   width: 22vw;
   max-width: 110px;
   aspect-ratio: 1/1;
-  object-fit: contain;
+  -o-object-fit: contain;
+     object-fit: contain;
   background-color: var(--bg-color);
   border-radius: 2vw;
   flex-shrink: 0;
@@ -106,6 +107,4 @@
     font-size: 0.95vw;
     border-radius: 0.4vw;
   }
-}
-
-/*# sourceMappingURL=index.css.map */
+}/*# sourceMappingURL=index.css.map */
