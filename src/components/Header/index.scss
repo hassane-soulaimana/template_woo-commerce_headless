@@ -133,7 +133,7 @@
   display: none;
 }
 
-/* ===== Masquage au scroll (desktop) ===== */
+/* Scroll */
 .header.header-hidden {
   .margin,
   .content {
@@ -145,7 +145,7 @@
   }
 }
 
-/* ===== Desktop : mise en page d'origine (barre large) ===== */
+
 @media screen and (min-aspect-ratio: 1/1) {
   .header .content,
   .header .margin {

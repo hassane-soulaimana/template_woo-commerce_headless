@@ -30,12 +30,16 @@ export default function ProductDetails() {
     }
   }, [id]);
 
+  if (loadingSingle && !productToDisplay) {
+    return <Loader size="lg" />;
+  }
+
   if (errorSingle && !productToDisplay) {
     return <Error404 />;
   }
 
   if (!productToDisplay) {
-    return <Loader size="lg" />;
+    return <Error404 />;
   }
 
   return (
