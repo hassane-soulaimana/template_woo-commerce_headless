@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import OrderDetails from "../OrderDetails";
-import "./index.scss";
+import "./index.css";
 
 export function OrderAll() {
   const orders = useSelector((state) => state.user.orders);

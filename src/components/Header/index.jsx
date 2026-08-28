@@ -1,4 +1,4 @@
-import "./index.scss";
+import "./index.css";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
