@@ -18,7 +18,6 @@ const Review = ({ productId }) => {
   // États pour la pagination
   const [totalPages, setTotalPages] = useState(1);
   const [currentPage, setCurrentPage] = useState(1);
-  const reviewsPerPage = 5;
 
   // États pour l'achat et le formulaire
   const [hasPurchased, setHasPurchased] = useState(false);
