@@ -17,18 +17,28 @@ export default function ProductDetails() {
   const { list, singleProduct, loadingSingle, errorSingle } = useSelector(
     (state) => state.products,
   );
+  const categories = useSelector((state) => state.categories.items || []);
 
   const productFromList = list?.data?.find(
-    (p) => p.id.toString() === id.toString(),
+    (p) => p.id?.toString() === id?.toString(),
   );
   const productToDisplay = productFromList || singleProduct;
 
+  // 1. Déclenchement du fetch si le produit n'est pas déjà en cache dans la liste
   useEffect(() => {
     if (id && !productFromList) {
       dispatch(fetchProductByIdThunk(id));
     }
-  }, [id]);
+  }, [id, productFromList, dispatch]);
 
+  // 2. Calcul synchrone instantané (0 lag, pas de useState inutile)
+  const categoryName = productToDisplay?.categories?.[0]?.name;
+  const matchedCategory = categories.find(
+    (cat) => cat.name?.toString() === categoryName?.toString(),
+  );
+  const bg = matchedCategory?.image?.src;
+
+  // 3. Gestion des états de chargement / erreur
   if (loadingSingle && !productToDisplay) {
     return <Loader size="lg" />;
   }
@@ -50,6 +60,10 @@ export default function ProductDetails() {
           reduxProducts={list?.data}
         />
         <Review productId={productToDisplay.id} />
+        <div
+          className="category-bg"
+          style={{ "--cat-bg": bg ? `url(${bg})` : "none" }}
+        ></div>
       </div>
     </main>
   );

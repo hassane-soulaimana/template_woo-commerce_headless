@@ -1,11 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 
-<<<<<<< HEAD
-=======
-import { fetchProductByIdThunk } from "../../thunkActionsCreator/productsThunks";
-import { fetchCategoriesThunk } from "../../thunkActionsCreator/categoriesThunks";
->>>>>>> pr-152
 import { addProductToCart } from "../../thunkActionsCreator/cartThunks";
 import { showToast } from "../../slices/toastSlice";
 import AverageRating from "../AverageRating";
@@ -20,29 +15,8 @@ export default function Product({ product }) {
   const [itemVariation, setItemVariation] = useState({});
   const [activeImageIndex, setActiveImageIndex] = useState(0);
 
-<<<<<<< HEAD
   function checkInStock(targetProduct) {
     const variation = targetProduct.variations.find((variation) =>
-=======
-  const { list, singleProduct, loadingSingle, errorSingle } = useSelector(
-    (state) => state.products,
-  );
-  const categories = useSelector((state) => state.categories.items);
-
-  useEffect(() => {
-    if (categories.length === 0) {
-      dispatch(fetchCategoriesThunk());
-    }
-  }, [dispatch]);
-
-  const productFromList = list?.data?.find(
-    (p) => p.id.toString() === id.toString(),
-  );
-  const productToDisplay = productFromList || singleProduct;
-
-  function checkInStock(product) {
-    const variation = product.variations.find((variation) =>
->>>>>>> pr-152
       variation.attributes.every(
         (attribute) => itemVariation[attribute.name] === attribute.value,
       ),
@@ -95,22 +69,8 @@ export default function Product({ product }) {
   const productImages = product.images || [];
   const mainImage = productImages[activeImageIndex]?.src || null;
 
-  const productCategoryId = productToDisplay.categories?.[0]?.id;
-  const productCategory = categories.find(
-    (cat) => cat.id === productCategoryId,
-  );
-  const bg = productCategory?.image?.src;
-
   return (
-<<<<<<< HEAD
     <>
-=======
-    <div className="product-details-page">
-      <div
-        className="category-bg"
-        style={{ "--cat-bg": bg ? `url(${bg})` : "none" }}
-      ></div>
->>>>>>> pr-152
       <Seo
         title={decodeHtml(product.name)}
         description={product.short_description || product.description}
