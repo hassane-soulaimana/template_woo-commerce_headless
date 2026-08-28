@@ -67,19 +67,19 @@ export default function AuthForm({ view = "login" }) {
     validateLogin(e, updatedForm);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e, method = view) => {
     if (e) e.preventDefault();
-    const validation = validateLogin(view);
+    const validation = validateLogin(method);
     if (Object.keys(validation).length > 0) {
       setErrors(validation);
       return;
     }
-    if (view === "login") {
+    if (method === "login") {
       dispatch(
         loginThunk({ username: form.username.trim(), password: form.password }),
       );
     }
-    if (view === "register") {
+    if (method === "register") {
       dispatch(
         registerThunk({
           username: form.username.trim(),
@@ -197,11 +197,8 @@ export default function AuthForm({ view = "login" }) {
           className="login"
           type="button"
           onClick={(e) => {
-            if (view === "login") {
-              handleSubmit(e);
-            } else {
-              dispatch(updateModalProps({ view: "login" }));
-            }
+            dispatch(updateModalProps({ view: "login" }));
+            handleSubmit(e, "login");
           }}
         >
           Se connecter
@@ -210,11 +207,8 @@ export default function AuthForm({ view = "login" }) {
           type="button"
           className="signin"
           onClick={(e) => {
-            if (view === "register") {
-              handleSubmit(e);
-            } else {
-              dispatch(updateModalProps({ view: "register" }));
-            }
+            dispatch(updateModalProps({ view: "register" }));
+            handleSubmit(e, "register");
           }}
         >
           S'inscrire
