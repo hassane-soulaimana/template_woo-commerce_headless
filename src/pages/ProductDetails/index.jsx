@@ -24,21 +24,17 @@ export default function ProductDetails() {
   );
   const productToDisplay = productFromList || singleProduct;
 
-  // 1. Déclenchement du fetch si le produit n'est pas déjà en cache dans la liste
   useEffect(() => {
     if (id && !productFromList) {
       dispatch(fetchProductByIdThunk(id));
     }
   }, [id, productFromList, dispatch]);
-
-  // 2. Calcul synchrone instantané (0 lag, pas de useState inutile)
   const categoryName = productToDisplay?.categories?.[0]?.name;
   const matchedCategory = categories.find(
     (cat) => cat.name?.toString() === categoryName?.toString(),
   );
   const bg = matchedCategory?.image?.src;
 
-  // 3. Gestion des états de chargement / erreur
   if (loadingSingle && !productToDisplay) {
     return <Loader size="lg" />;
   }
