@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
 import { openModal } from "../../slices/modalSlice";
-import FocusTrap from "react-focus-trap";
+import FocusTrap from "focus-trap-react";
 import "./index.css";
 
 export default function CheckoutAuthPromptModal({
