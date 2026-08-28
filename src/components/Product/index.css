@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .product-main-card {
   background-color: var(--surface-color);
   border: 1px solid color-mix(in srgb, var(--dark-color) 14%, transparent);
@@ -8,6 +9,42 @@
 @media (max-width: 640px) {
   .product-main-card {
     padding: 1.25rem;
+=======
+/* ===================================================
+   PRODUCT DETAILS PAGE STYLES (EXCLUDING BUTTONS)
+   =================================================== */
+.product-details-page {
+  position: relative;
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+.product-details-page .category-bg {
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: -3%;
+  background: linear-gradient(rgba(253, 245, 234, 0.55), rgba(253, 245, 234, 0.55)), var(--cat-bg, none) center/cover no-repeat;
+  border-radius: 40px 40px 0 0;
+  opacity: 0.5;
+}
+.product-details-page .top-navigation-bar {
+  background-color: var(--bg-color);
+  border: 1px solid var(--border-color);
+  border-radius: 1vw;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 3vw;
+  margin-bottom: 4vw;
+}
+@media screen and (aspect-ratio > 1/1) {
+  .product-details-page .top-navigation-bar {
+    gap: 1.5vw;
+    margin-bottom: 2vw;
+>>>>>>> pr-152
   }
 }
 .product-main-card button {
@@ -25,7 +62,19 @@
   color: var(--surface-color);
   background-color: var(--primary-color);
 }
+<<<<<<< HEAD
 .product-main-card .product-title {
+=======
+.product-details-page .product-main-card {
+  padding: 2rem;
+}
+@media (max-width: 640px) {
+  .product-details-page .product-main-card {
+    padding: 1.25rem;
+  }
+}
+.product-details-page .product-title {
+>>>>>>> pr-152
   color: var(--dark-color);
   margin-bottom: 1rem;
 }
@@ -50,11 +99,17 @@
   width: 100%;
   aspect-ratio: 1/1;
   overflow: hidden;
+  border: 1px solid var(--secondary-color);
+  border-radius: 12px;
 }
 .product-main-card .gallery-wrapper .main-image-container img {
   width: 100%;
   height: 100%;
+<<<<<<< HEAD
   object-fit: contain;
+=======
+  object-fit: cover;
+>>>>>>> pr-152
 }
 .product-main-card .gallery-wrapper .thumbnail-list {
   display: flex;
@@ -104,7 +159,6 @@
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-  width: -moz-fit-content;
   width: fit-content;
 }
 .product-main-card .info-wrapper .price-action-card .price-text {
@@ -120,6 +174,7 @@
   width: 8vw;
   height: 8vw;
 }
+<<<<<<< HEAD
 @media screen and (aspect-ratio > 1/1) {
   .product-details-page .info-wrapper .price-action-card .actions-row img {
     width: 3vw;
@@ -134,3 +189,9 @@
 }
 
 /*# sourceMappingURL=index.css.map */
+=======
+.product-details-page .detailed-description-section .description-content {
+  line-height: 1.8;
+  color: var(--text-color-muted);
+}
+>>>>>>> pr-152
