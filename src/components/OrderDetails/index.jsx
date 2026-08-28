@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import SucessMessage from "../SucessMessage";
+import "./index.scss";
 
 const ordersCache = {};
 
