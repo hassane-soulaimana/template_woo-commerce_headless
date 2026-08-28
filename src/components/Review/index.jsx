@@ -16,6 +16,7 @@ const Review = ({ productId }) => {
   const [error, setError] = useState(null);
 
   // États pour la pagination
+  const [totalPages, setTotalPages] = useState(1);
   const [currentPage, setCurrentPage] = useState(1);
   const reviewsPerPage = 5;
 
@@ -32,30 +33,35 @@ const Review = ({ productId }) => {
 
   // --- Chargement des avis ---
   const fetchReviews = () => {
-    if (!productId) {
-      setReviews([]);
-      setLoading(false);
-      return;
-    }
-
+    if (!productId) return;
     setLoading(true);
-    setError(null);
 
     fetch(
-      `${baseUrl}/wp-json/wc/store/v1/products/reviews?product_id=${productId}`,
+      `${baseUrl}/wp-json/wc/store/v1/products/reviews?product_id=${productId}&per_page=5&page=${currentPage}`,
     )
       .then((response) => {
-        if (!response.ok) throw new Error(`Erreur réseau ${response.status}`);
+        if (!response.ok) throw new Error("Erreur réseau");
+
+        // WooCommerce renvoie le total des pages dans les headers
+        const totalPagesHeader = response.headers.get("X-WP-TotalPages");
+        if (totalPagesHeader) {
+          setTotalPages(parseInt(totalPagesHeader, 10));
+        }
+
         return response.json();
       })
       .then((data) => setReviews(Array.isArray(data) ? data : []))
-      .catch((err) => setError(err.message || "Impossible de charger les avis"))
+      .catch((err) => setError(err.message))
       .finally(() => setLoading(false));
   };
-
+  // 1. Relance le fetch à chaque fois que le produit OU la page change
   useEffect(() => {
     fetchReviews();
-    setCurrentPage(1); // Réinitialise la page lors du changement de produit
+  }, [productId, currentPage]);
+
+  // 2. Remet la page à 1 uniquement si on change de produit
+  useEffect(() => {
+    setCurrentPage(1);
   }, [productId]);
 
   // Helper pour vérifier si une liste d'articles contient le produit
@@ -220,10 +226,6 @@ const Review = ({ productId }) => {
   };
 
   // --- Calculs pour la pagination ---
-  const indexOfLastReview = currentPage * reviewsPerPage;
-  const indexOfFirstReview = indexOfLastReview - reviewsPerPage;
-  const currentReviews = reviews.slice(indexOfFirstReview, indexOfLastReview);
-  const totalPages = Math.ceil(reviews.length / reviewsPerPage);
 
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
@@ -330,7 +332,7 @@ const Review = ({ productId }) => {
       {error && <p className="review-error">Erreur : {error}</p>}
       {!loading && !error && reviews.length === 0 && <p>Aucun avis trouvé.</p>}
       <div className="reviews-block">
-        {currentReviews.map((review) => (
+        {reviews.map((review) => (
           <article key={review.id || review.review_id} className="review-item">
             <div className="review-stars">{renderStars(review.rating)}</div>
             <div className="review-meta">
