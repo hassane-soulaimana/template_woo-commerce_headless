@@ -12,10 +12,10 @@ import {
   registerThunk,
 } from "../../thunkActionsCreator/userThunks";
 
-export default function AuthForm() {
+export default function AuthForm({ view = "login" }) {
   const dispatch = useDispatch();
   const { loading, error, token } = useSelector((state) => state.user);
-  const [mode, setMode] = useState("login");
+
   const [errors, setErrors] = useState({});
   const [form, setForm] = useState({
     username: "",
@@ -68,21 +68,18 @@ export default function AuthForm() {
   };
 
   const handleSubmit = (e) => {
-    let method = "register";
-    e.target.className === "login" && (setMode("login"), (method = "login"));
-    e.target.className === "signin" && setMode("register");
-
-    const validation = validateLogin(method);
+    if (e) e.preventDefault();
+    const validation = validateLogin(view);
     if (Object.keys(validation).length > 0) {
       setErrors(validation);
       return;
     }
-    if (method === "login") {
+    if (view === "login") {
       dispatch(
         loginThunk({ username: form.username.trim(), password: form.password }),
       );
     }
-    if (method === "register") {
+    if (view === "register") {
       dispatch(
         registerThunk({
           username: form.username.trim(),
@@ -91,15 +88,14 @@ export default function AuthForm() {
         }),
       );
     }
-    return;
   };
 
   return (
     <form className="auth-form">
       <h2>
-        {mode === "login"
+        {view === "login"
           ? "Bonjour"
-          : mode === "register"
+          : view === "register"
             ? "Créer un compte"
             : "Confirmez votre mot de passe"}
       </h2>
@@ -124,7 +120,7 @@ export default function AuthForm() {
           }}
         />
       </div>
-      {mode === "register" && (
+      {view === "register" && (
         <div className="auth-form__field">
           <label htmlFor="email">E-mail</label>
           <input
@@ -155,7 +151,7 @@ export default function AuthForm() {
           value={form.password}
           onChange={handleChange}
           className={errors.password ? "input--error" : ""}
-          autoComplete={mode === "login" ? "current-password" : "new-password"}
+          autoComplete={view === "login" ? "current-password" : "new-password"}
           placeholder={errors.password}
           title={errors.password}
           onKeyDown={(e) => {
@@ -166,7 +162,7 @@ export default function AuthForm() {
           }}
         />
       </div>
-      {mode === "register" && (
+      {view === "register" && (
         <div className="auth-form__field">
           <label htmlFor="confirmPassword">Confirmez le mot de passe</label>
           <input
@@ -200,14 +196,26 @@ export default function AuthForm() {
         <button
           className="login"
           type="button"
-          onClick={(e) => handleSubmit(e)}
+          onClick={(e) => {
+            if (view === "login") {
+              handleSubmit(e);
+            } else {
+              dispatch(updateModalProps({ view: "login" }));
+            }
+          }}
         >
           Se connecter
         </button>
         <button
           type="button"
           className="signin"
-          onClick={(e) => handleSubmit(e)}
+          onClick={(e) => {
+            if (view === "register") {
+              handleSubmit(e);
+            } else {
+              dispatch(updateModalProps({ view: "register" }));
+            }
+          }}
         >
           S'inscrire
         </button>{" "}
