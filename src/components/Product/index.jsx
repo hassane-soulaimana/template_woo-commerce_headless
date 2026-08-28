@@ -3,6 +3,7 @@ import { useParams, useNavigate, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 import { fetchProductByIdThunk } from "../../thunkActionsCreator/productsThunks";
+import { fetchCategoriesThunk } from "../../thunkActionsCreator/categoriesThunks";
 import { addProductToCart } from "../../thunkActionsCreator/cartThunks";
 import { showToast } from "../../slices/toastSlice";
 import AverageRating from "../AverageRating";
@@ -29,6 +30,13 @@ export default function ProductDetails() {
   const { list, singleProduct, loadingSingle, errorSingle } = useSelector(
     (state) => state.products,
   );
+  const categories = useSelector((state) => state.categories.items);
+
+  useEffect(() => {
+    if (categories.length === 0) {
+      dispatch(fetchCategoriesThunk());
+    }
+  }, [dispatch]);
 
   const productFromList = list?.data?.find(
     (p) => p.id.toString() === id.toString(),
@@ -111,8 +119,18 @@ export default function ProductDetails() {
   const productImages = productToDisplay.images || [];
   const mainImage = productImages[activeImageIndex]?.src || null;
 
+  const productCategoryId = productToDisplay.categories?.[0]?.id;
+  const productCategory = categories.find(
+    (cat) => cat.id === productCategoryId,
+  );
+  const bg = productCategory?.image?.src;
+
   return (
     <div className="product-details-page">
+      <div
+        className="category-bg"
+        style={{ "--cat-bg": bg ? `url(${bg})` : "none" }}
+      ></div>
       <Seo
         title={decodeHtml(productToDisplay.name)}
         description={

@@ -2,9 +2,21 @@
    PRODUCT DETAILS PAGE STYLES (EXCLUDING BUTTONS)
    =================================================== */
 .product-details-page {
+  position: relative;
   max-width: 1200px;
   margin: 2rem auto;
   padding: 0 1rem;
+}
+.product-details-page .category-bg {
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: -3%;
+  background: linear-gradient(rgba(253, 245, 234, 0.55), rgba(253, 245, 234, 0.55)), var(--cat-bg, none) center/cover no-repeat;
+  border-radius: 40px 40px 0 0;
+  opacity: 0.5;
 }
 .product-details-page .top-navigation-bar {
   background-color: var(--bg-color);
@@ -90,11 +102,7 @@
   background-color: var(--primary-color);
 }
 .product-details-page .product-main-card {
-  background-color: var(--surface-color);
-  border: 1px solid var(--border-color);
-  border-radius: 16px;
   padding: 2rem;
-  box-shadow: 0 10px 25px -5px var(--primary-color);
 }
 @media (max-width: 640px) {
   .product-details-page .product-main-card {
@@ -126,12 +134,13 @@
   width: 100%;
   aspect-ratio: 1/1;
   overflow: hidden;
+  border: 1px solid var(--secondary-color);
+  border-radius: 12px;
 }
 .product-details-page .gallery-wrapper .main-image-container img {
   width: 100%;
   height: 100%;
-  -o-object-fit: contain;
-     object-fit: contain;
+  object-fit: cover;
 }
 .product-details-page .gallery-wrapper .thumbnail-list {
   display: flex;
@@ -159,8 +168,7 @@
 .product-details-page .gallery-wrapper .thumbnail-list .thumbnail-item img {
   width: 100%;
   height: 100%;
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
 }
 .product-details-page .gallery-wrapper .thumbnail-list .thumbnail-item.active {
   border-color: var(--primary-color);
@@ -182,7 +190,6 @@
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-  width: -moz-fit-content;
   width: fit-content;
 }
 .product-details-page .info-wrapper .price-action-card .price-text {
@@ -201,4 +208,4 @@
 .product-details-page .detailed-description-section .description-content {
   line-height: 1.8;
   color: var(--text-color-muted);
-}/*# sourceMappingURL=index.css.map */
+}
