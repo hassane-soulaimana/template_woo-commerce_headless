@@ -3,9 +3,9 @@ import "./index.css";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  closeAuthModal,
-  switchAuthModalView,
-} from "../../slices/authModalSlice";
+  closeModal,
+  updateModalProps,
+} from "../../slices/modalSlice";
 import { showToast } from "../../slices/toastSlice";
 import {
   loginThunk,
@@ -25,7 +25,7 @@ export default function AuthForm() {
   });
 
   useEffect(() => {
-    if (token) dispatch(closeAuthModal());
+    if (token) dispatch(closeModal());
   }, [dispatch, token]);
 
   useEffect(() => {
@@ -192,7 +192,7 @@ export default function AuthForm() {
       <button
         type="button"
         className="auth-form__forgot"
-        onClick={() => dispatch(switchAuthModalView("reset-password"))}
+        onClick={() => dispatch(updateModalProps({ view: "reset-password" }))}
       >
         Mot de passe oublié ?
       </button>
