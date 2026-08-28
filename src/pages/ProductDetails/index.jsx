@@ -7,6 +7,7 @@ import Product from "../../components/Product";
 import SimilarProducts from "../../components/SimilarProducts";
 import Review from "../../components/Review";
 import Loader from "../../components/Loader";
+import Error404 from "../Error404";
 
 import "./index.css";
 
@@ -29,16 +30,12 @@ export default function ProductDetails() {
     }
   }, [id]);
 
-  if (loadingSingle && !productToDisplay) {
-    return <Loader size="lg" />;
-  }
-
   if (errorSingle && !productToDisplay) {
-    return <div className="error-state">Erreur : {errorSingle}</div>;
+    return <Error404 />;
   }
 
   if (!productToDisplay) {
-    return <div className="not-found-state">Aucun produit trouvé.</div>;
+    return <Loader size="lg" />;
   }
 
   return (
