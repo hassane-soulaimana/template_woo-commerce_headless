@@ -1,6 +1,11 @@
 .cart {
   width: 100%;
 }
+.cart ul {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
 .cart .total {
   margin-left: 2vw;
 }/*# sourceMappingURL=index.css.map */

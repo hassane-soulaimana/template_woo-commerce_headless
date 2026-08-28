@@ -50,43 +50,45 @@ export function CartProduct({ item }) {
           </p>
         )}
       </Link>
-      <button
-        disabled={item.quantity === item.quantity_limits.maximum}
-        onClick={() => {
-          dispatch(
-            addProductToCart({
-              productId: item.id,
-              quantity: 1,
-              variation: item.variation?.[0] || [],
-            }),
-          );
-        }}
-      >
-        Ajouter +
-      </button>
-      <button
-        onClick={() => {
-          dispatch(
-            substractProductFromCart({
-              itemKey: item.key,
-              quantity: item.quantity,
-            }),
-          );
-        }}
-      >
-        Reduire -
-      </button>
-      <button
-        onClick={() => {
-          dispatch(
-            deleteProductFromCart({
-              itemKey: item.key,
-            }),
-          );
-        }}
-      >
-        Supprimer
-      </button>
+      <div className="cart-product-actions">
+        <button
+          disabled={item.quantity === item.quantity_limits.maximum}
+          onClick={() => {
+            dispatch(
+              addProductToCart({
+                productId: item.id,
+                quantity: 1,
+                variation: item.variation?.[0] || [],
+              }),
+            );
+          }}
+        >
+          Ajouter +
+        </button>
+        <button
+          onClick={() => {
+            dispatch(
+              substractProductFromCart({
+                itemKey: item.key,
+                quantity: item.quantity,
+              }),
+            );
+          }}
+        >
+          Reduire -
+        </button>
+        <button
+          onClick={() => {
+            dispatch(
+              deleteProductFromCart({
+                itemKey: item.key,
+              }),
+            );
+          }}
+        >
+          Supprimer
+        </button>
+      </div>
     </li>
   );
 }
