@@ -1,4 +1,5 @@
 .product-main-card {
+  border-radius: 16px;
   padding: 2rem;
   box-shadow: 0 10px 25px -5px color-mix(in srgb, var(--primary-color) 35%, transparent);
 }
