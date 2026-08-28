@@ -7,7 +7,6 @@ import Product from "../../components/Product";
 import SimilarProducts from "../../components/SimilarProducts";
 import Review from "../../components/Review";
 import Loader from "../../components/Loader";
-import Error404 from "../Error404";
 
 import "./index.css";
 
@@ -15,7 +14,7 @@ export default function ProductDetails() {
   const { id } = useParams();
   const dispatch = useDispatch();
 
-  const { list, singleProduct, loadingSingle, errorSingle } = useSelector(
+  const { list, singleProduct, loadingSingle } = useSelector(
     (state) => state.products,
   );
 
@@ -34,12 +33,8 @@ export default function ProductDetails() {
     return <Loader size="lg" />;
   }
 
-  if (errorSingle && !productToDisplay) {
-    return <Error404 />;
-  }
-
   if (!productToDisplay) {
-    return <Error404 />;
+    return <p className="not-found-state">Aucun produit trouvé.</p>;
   }
 
   return (
