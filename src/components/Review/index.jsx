@@ -201,11 +201,18 @@ const Review = ({ productId }) => {
     }
   };
 
-  const renderStars = (ratingValue) => {
-    const value = Math.round(Number(ratingValue) || 0);
-    return Array.from({ length: 5 }, (_, index) =>
-      index < value ? "★" : "☆",
-    ).join("");
+  const renderStars = (rating = 0) => {
+    const normalizedRating = Math.max(0, Math.min(Number(rating) || 0, 5));
+    const fullStars = Math.round(normalizedRating);
+
+    return [1, 2, 3, 4, 5].map((star) => (
+      <img
+        key={star}
+        className="review-star-icon"
+        src={star <= fullStars ? "/review-active.svg" : "/review-inactive.svg"}
+        alt="avis"
+      />
+    ));
   };
 
   return (
@@ -226,18 +233,25 @@ const Review = ({ productId }) => {
             {submitError && <p>{submitError}</p>}
 
             <div>
-              <label>Note : </label>
-              {[1, 2, 3, 4, 5].map((star) => (
-                <button
-                  type="button"
-                  key={star}
-                  onClick={() => setRating(star)}
-                  aria-label={`Choisir ${star} étoiles`}
-                  className={`review-star-button ${star <= rating ? "active" : ""}`}
-                >
-                  ★
-                </button>
-              ))}
+              <div className="review-rating">
+                <label>Note : </label>
+
+                {[1, 2, 3, 4, 5].map((star) => (
+                  <img
+                    type="button"
+                    className="review-star-button"
+                    key={star}
+                    onClick={() => setRating(star)}
+                    aria-label={`Choisir ${star} étoiles`}
+                    src={
+                      star <= rating
+                        ? "/review-active.svg"
+                        : "/review-inactive.svg"
+                    }
+                    alt="avis"
+                  />
+                ))}
+              </div>
               {!rating && (
                 <p className="review-helper-text">
                   Choisissez une note de 1 à 5.

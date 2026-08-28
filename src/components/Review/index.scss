@@ -1,3 +1,4 @@
+// Composants
 .review-rating {
   display: flex;
   align-items: center;
@@ -6,12 +7,10 @@
 .review-list {
   margin-top: 3.2lvh;
 }
-
 .review-stars {
   display: flex;
   align-items: center;
 }
-
 .review-star-button {
   cursor: pointer;
 }
@@ -26,4 +25,4 @@
   margin-top: 2lvh;
   padding: 1%;
   box-sizing: border-box;
-}/*# sourceMappingURL=index.css.map */
+}
