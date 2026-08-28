@@ -34,7 +34,7 @@ import Seo from "./components/Seo";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Toast from "./components/Toast";
-import AuthModal from "./components/AuthModal";
+import Modal from "./components/Modal";
 
 import "./index.css";
 import ScrollToTop from "./components/ScrollToTop";
@@ -83,7 +83,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         </Routes>
         <Footer />
         <Toast />
-        <AuthModal />
+        <Modal />
       </Router>
     </Provider>
   </HelmetProvider>,

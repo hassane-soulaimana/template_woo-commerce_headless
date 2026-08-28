@@ -1,5 +1,5 @@
-import { openAuthModal } from "../../slices/authModalSlice";
 import { useDispatch } from "react-redux";
+import { openModal } from "../../slices/modalSlice";
 import FocusTrap from "react-focus-trap";
 import "./index.css";
 
@@ -24,7 +24,7 @@ export default function CheckoutAuthPromptModal({
               type="button"
               onClick={() => {
                 onClose();
-                dispatch(openAuthModal());
+                dispatch(openModal({ name: "auth", props: { view: "login" } }));
               }}
             >
               Se connecter / S'inscrire
