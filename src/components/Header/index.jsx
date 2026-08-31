@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Autocomplete from "../Autocomplete";
 import { logout } from "../../slices/userSlice";
-import { openAuthModal } from "../../slices/authModalSlice";
+import { openModal } from "../../slices/modalSlice";
 import searchIcon from "./search.svg";
 import heartIcon from "./heart.svg";
 import bagIcon from "./bag.svg";
